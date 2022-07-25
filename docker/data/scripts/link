@@ -1,0 +1,1 @@
+/usr/bin/wine /buildtools/MCU/DSP56800x_EABI_Tools/command_line_tools/mwld56800e.exe "$@" 2>/dev/null
