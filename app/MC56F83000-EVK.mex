@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<configuration name="MC56F83000-EVK" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_11 http://mcuxpresso.nxp.com/XSD/mex_configuration_11.xsd" uuid="76fb24ba-b564-4af1-8649-c57ffd3307f3" version="11" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <common>
+      <processor>MC56F83789</processor>
+      <package>MC56F83789VLL</package>
+      <board>MC56F83000-EVK</board>
+      <board_revision>A1</board_revision>
+      <mcu_data>ksdk2_0</mcu_data>
+      <cores selected="core0">
+         <core name="DSP56800EX" id="core0" description="DSP56800EX core"/>
+      </cores>
+      <description></description>
+   </common>
+   <preferences>
+      <validate_boot_init_only>true</validate_boot_init_only>
+      <generate_extended_information>false</generate_extended_information>
+      <generate_code_modified_registers_only>false</generate_code_modified_registers_only>
+      <update_include_paths>true</update_include_paths>
+      <generate_registers_defines>false</generate_registers_defines>
+   </preferences>
+   <tools>
+      <pins name="Pins" version="11.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/pin_mux.c" update_enabled="true"/>
+            <file path="board/pin_mux.h" update_enabled="true"/>
+         </generated_project_files>
+         <pins_profile>
+            <processor_version>11.0.1</processor_version>
+         </pins_profile>
+         <functions_list>
+            <function name="BOARD_InitPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins/>
+            </function>
+            <function name="BOARD_InitBUTTONsPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="PeripheralSetting" resourceId="INTC.IRQ_devices" description="Interrupt vector setting of the GPIOF peripheral should be configured in the INTC component in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitBUTTONsPins">
+                     <feature name="value" evaluation="includes">
+                        <data type="String">GPIOF</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralSetting" resourceId="INTC.IRQ_devices" description="Interrupt vector setting of the GPIOC peripheral should be configured in the INTC component in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitBUTTONsPins">
+                     <feature name="value" evaluation="includes">
+                        <data type="String">GPIOC</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitBUTTONsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitBUTTONsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="GPIOF" signal="GPIO, 6" pin_num="94" pin_signal="GPIOF6/TB2/PWMA_3X/PWMB_3X/XB_IN2">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqFallingEdge"/>
+                        <pin_feature name="slew_rate" value="slow"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 1" pin_num="77" pin_signal="GPIOF1/CLKO1/XB_IN7/CMPD_O">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqFallingEdge"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 15" pin_num="46" pin_signal="GPIOF15/RXD0/XB_IN10">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqFallingEdge"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOC" signal="GPIO, 4" pin_num="12" pin_signal="GPIOC4/TA1/CMPB_O/XB_IN8/EWM_OUT_B">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqFallingEdge"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitLEDsPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitLEDsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitLEDsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="GPIOF" signal="GPIO, 8" pin_num="6" pin_signal="GPIOF8/RXD0/TB1/CMPD_O/PWMA_2X">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                        <pin_feature name="pull_select" value="down"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 11" pin_num="45" pin_signal="GPIOF11/TXD0/XB_IN11">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                        <pin_feature name="pull_select" value="down"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 10" pin_num="56" pin_signal="GPIOF10/TXD2/PWMA_FAULT6/PWMB_FAULT6/XB_OUT10">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                        <pin_feature name="pull_select" value="down"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 9" pin_num="57" pin_signal="GPIOF9/RXD2/PWMA_FAULT7/PWMB_FAULT7/XB_OUT11">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                        <pin_feature name="pull_select" value="down"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitOSCsPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="OCCS" description="Peripheral OCCS is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitOSCsPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitOSCsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitOSCsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="OCCS" signal="EXTAL" pin_num="3" pin_signal="GPIOC0/EXTAL/CLKIN0">
+                     <pin_features>
+                        <pin_feature name="slew_rate" value="no_init"/>
+                        <pin_feature name="open_drain" value="no_init"/>
+                        <pin_feature name="pull_select" value="no_init"/>
+                        <pin_feature name="pull_enable" value="no_init"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="OCCS" signal="XTAL" pin_num="4" pin_signal="GPIOC1/XTAL">
+                     <pin_features>
+                        <pin_feature name="slew_rate" value="no_init"/>
+                        <pin_feature name="open_drain" value="no_init"/>
+                        <pin_feature name="pull_select" value="no_init"/>
+                        <pin_feature name="pull_enable" value="no_init"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitTHERMISTORPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="ADC" description="Peripheral ADC is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitTHERMISTORPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitTHERMISTORPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitTHERMISTORPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="ADC" signal="ANA, 7" pin_num="17" pin_signal="GPIOA7/ANA7"/>
+                  <pin peripheral="ADC" signal="ANA, 6" pin_num="19" pin_signal="GPIOA6/ANA6"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitUSBOTGPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="USB" description="Peripheral USB is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitUSBOTGPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitUSBOTGPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitUSBOTGPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="GPIOF" signal="GPIO, 13" pin_num="90" pin_signal="GPIOF13/MOSI1/PWMB_FAULT1">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="false"/>
+                        <pin_feature name="open_drain" value="disable"/>
+                        <pin_feature name="pull_select" value="up"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOF" signal="GPIO, 14" pin_num="91" pin_signal="GPIOF14/SCLK1/PWMB_FAULT0">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="USB" signal="DP" pin_num="39" pin_signal="USB_DP"/>
+                  <pin peripheral="USB" signal="DM" pin_num="40" pin_signal="USB_DM"/>
+                  <pin peripheral="GPIOF" signal="GPIO, 12" pin_num="89" pin_signal="GPIOF12/MISO1/PWMB_FAULT2">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="pull_select" value="up"/>
+                        <pin_feature name="pull_enable" value="enable"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitSPI_FLASHPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="QSPI1" description="Peripheral QSPI1 is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitSPI_FLASHPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitSPI_FLASHPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitSPI_FLASHPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="QSPI1" signal="MOSI" pin_num="48" pin_signal="GPIOG11/TB3/CLKO0/MOSI1"/>
+                  <pin peripheral="QSPI1" signal="MISO" pin_num="47" pin_signal="GPIOD7/XB_OUT11/XB_IN7/MISO1"/>
+                  <pin peripheral="QSPI1" signal="SCLK" pin_num="55" pin_signal="GPIOF0/XB_IN6/TB2/SCLK1"/>
+                  <pin peripheral="QSPI1" signal="SS" pin_num="95" pin_signal="GPIOF7/TB3/CMPC_O/SS1_B/XB_IN3"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitPWM_LEDsPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="PWMA" description="Peripheral PWMA is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitPWM_LEDsPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPWM_LEDsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitPWM_LEDsPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="PWMA" signal="B, 0" pin_num="68" pin_signal="GPIOE0/PWMA_0B/XB_OUT4">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PWMA" signal="A, 0" pin_num="69" pin_signal="GPIOE1/PWMA_0A/XB_OUT5">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PWMA" signal="B, 1" pin_num="74" pin_signal="GPIOE2/PWMA_1B/XB_OUT6">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PWMA" signal="A, 1" pin_num="75" pin_signal="GPIOE3/PWMA_1A/XB_OUT7">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PWMA" signal="B, 2" pin_num="82" pin_signal="GPIOE4/PWMA_2B/XB_IN2/XB_OUT8">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PWMA" signal="A, 2" pin_num="83" pin_signal="GPIOE5/PWMA_2A/XB_IN3/XB_OUT9">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitACCEL_MAGNET_I2CPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="I2C1" description="Peripheral I2C1 is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitACCEL_MAGNET_I2CPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralSetting" resourceId="INTC.IRQ_devices" description="Interrupt vector setting of the GPIOA peripheral should be configured in the INTC component in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitACCEL_MAGNET_I2CPins">
+                     <feature name="value" evaluation="includes">
+                        <data type="String">GPIOA</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitACCEL_MAGNET_I2CPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitACCEL_MAGNET_I2CPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="I2C1" signal="SCL" pin_num="60" pin_signal="GPIOF2/SCL1/XB_OUT6/MISO1">
+                     <pin_features>
+                        <pin_feature name="open_drain" value="enable"/>
+                        <pin_feature name="pull_select" value="up"/>
+                        <pin_feature name="pull_enable" value="enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="I2C1" signal="SDA" pin_num="61" pin_signal="GPIOF3/SDA1/XB_OUT7/MOSI1">
+                     <pin_features>
+                        <pin_feature name="open_drain" value="enable"/>
+                        <pin_feature name="pull_select" value="up"/>
+                        <pin_feature name="pull_enable" value="enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOA" signal="GPIO, 8" pin_num="18" pin_signal="GPIOA8/CMPD_IN1">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqRisingEdge"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIOA" signal="GPIO, 9" pin_num="14" pin_signal="GPIOA9/CMPD_IN2">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="gpio_interrupt" value="gpioIrqRisingEdge"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitUSBtoSCIPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="QSCI0" description="Peripheral QSCI0 is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitUSBtoSCIPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitUSBtoSCIPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitUSBtoSCIPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="QSCI0" signal="TXD" pin_num="5" pin_signal="GPIOC2/TXD0/TB0/XB_IN2/CLKO0"/>
+                  <pin peripheral="QSCI0" signal="RXD" pin_num="11" pin_signal="GPIOC3/TA0/CMPA_O/RXD0/CLKIN1"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitCANPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="CAN0" description="Peripheral CAN0 is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitCANPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitCANPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitCANPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="CAN0" signal="TX" pin_num="58" pin_signal="GPIOC11/CANTX/SCL1/TXD1">
+                     <pin_features>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="CAN0" signal="RX" pin_num="59" pin_signal="GPIOC12/CANRX/SDA1/RXD1"/>
+                  <pin peripheral="GPIOA" signal="GPIO, 10" pin_num="13" pin_signal="GPIOA10/CMPD_IN3">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="pull_enable" value="disable"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitANA_SENSEPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="ADC" description="Peripheral ADC is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitANA_SENSEPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitANA_SENSEPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitANA_SENSEPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="ADC" signal="ANA, 0" pin_num="22" pin_signal="GPIOA0/ANA0/CMPA_IN3/CMPC_O"/>
+                  <pin peripheral="ADC" signal="ANA, 1" pin_num="23" pin_signal="GPIOA1/ANA1/CMPA_IN0"/>
+                  <pin peripheral="ADC" signal="ANB, 0" pin_num="33" pin_signal="GPIOB0/ANB0/CMPB_IN3"/>
+                  <pin peripheral="ADC" signal="ANB, 3" pin_num="42" pin_signal="GPIOB3/ANB3/VREFLB/CMPC_IN0"/>
+                  <pin peripheral="ADC" signal="ANB, 2" pin_num="36" pin_signal="GPIOB2/ANB2/VREFHB/CMPC_IN3"/>
+                  <pin peripheral="ADC" signal="ANA, 2" pin_num="24" pin_signal="GPIOA2/ANA2/VREFHA/CMPA_IN1"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitADC_CMPPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="ADC" description="Peripheral ADC is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitADC_CMPPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="Peripheral" resourceId="CMPB" description="Peripheral CMPB is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitADC_CMPPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitADC_CMPPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitADC_CMPPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="ADC" signal="ANB, 7" pin_num="26" pin_signal="GPIOB7/ANB7/CMPB_IN2"/>
+                  <pin peripheral="CMPB" signal="IN, 1" pin_num="28" pin_signal="GPIOB6/ANB6/CMPB_IN1"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitDEBUG_UARTPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <prefix>BOARD_</prefix>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="QSCI2" description="Peripheral QSCI2 is not initialized in the Peripherals tool." problem_level="1" source="Pins:BOARD_InitDEBUG_UARTPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitDEBUG_UARTPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.dsc_gpio" description="Pins initialization requires the DSC_GPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitDEBUG_UARTPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="QSCI2" signal="TXD" pin_num="9" pin_signal="GPIOD6/TXD2/XB_IN4/XB_OUT8"/>
+                  <pin peripheral="QSCI2" signal="RXD" pin_num="10" pin_signal="GPIOD5/RXD2/XB_IN5/XB_OUT9"/>
+               </pins>
+            </function>
+         </functions_list>
+      </pins>
+      <clocks name="Clocks" version="9.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/clock_config.c" update_enabled="true"/>
+            <file path="board/clock_config.h" update_enabled="true"/>
+         </generated_project_files>
+         <clocks_profile>
+            <processor_version>11.0.1</processor_version>
+         </clocks_profile>
+         <clock_configurations>
+            <clock_configuration name="BOARD_BootClockRUN" id_prefix="" prefix_user_defined="false">
+               <description></description>
+               <options/>
+               <dependencies>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.extal" description="&apos;EXTAL&apos; (Pins tool id: OCCS.extal, Clocks tool id: OCCS.EXTAL) needs to be routed" problem_level="1" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="routed" evaluation="">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.extal" description="&apos;EXTAL&apos; (Pins tool id: OCCS.extal, Clocks tool id: OCCS.EXTAL) needs to have &apos;INPUT&apos; direction" problem_level="1" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="direction" evaluation="">
+                        <data>INPUT</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.xtal" description="&apos;XTAL&apos; (Pins tool id: OCCS.xtal, Clocks tool id: OCCS.XTAL) needs to be routed" problem_level="1" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="routed" evaluation="">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.xtal" description="&apos;XTAL&apos; (Pins tool id: OCCS.xtal, Clocks tool id: OCCS.XTAL) needs to have &apos;OUTPUT&apos; direction" problem_level="1" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="direction" evaluation="">
+                        <data>OUTPUT</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Clocks initialization requires the COMMON Driver in the project." problem_level="2" source="Clocks:BOARD_BootClockRUN">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <clock_sources>
+                  <clock_source id="OCCS.OSC.outFreq" value="8 MHz" locked="false" enabled="true"/>
+                  <clock_source id="OCCS.ROSC200kHz.outFreq" value="200 kHz" locked="false" enabled="false"/>
+               </clock_sources>
+               <clock_outputs>
+                  <clock_output id="BUS_2X_CLK.outFreq" value="200 MHz" locked="false" accuracy=""/>
+                  <clock_output id="BUS_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="CPU_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="EXT_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="IIC0_FLT_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="IIC1_FLT_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="MSTR_OSC.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC200kHz_CLK.outFreq" value="200 kHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC48MHz_CLK.outFreq" value="48 MHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC8MHz_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI0_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI1_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI2_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_2X_CLK.outFreq" value="200 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_CLK.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_FTFE.outFreq" value="25 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_IPBB.outFreq" value="100 MHz" locked="false" accuracy=""/>
+                  <clock_output id="XOSC_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+               </clock_outputs>
+               <clock_settings>
+                  <setting id="OCCS.COD.scale" value="1" locked="true"/>
+                  <setting id="OCCS.EXT_SEL.sel" value="OCCS.OSC" locked="false"/>
+                  <setting id="OCCS.PRECS.sel" value="OCCS.EXT_SEL" locked="false"/>
+                  <setting id="OCCS.ZSRC.sel" value="OCCS.PLL_DIV2" locked="false"/>
+                  <setting id="OCCS_CTRL_PLLPD_CFG" value="Enabled" locked="false"/>
+                  <setting id="OCCS_OSCTL2_COPD_CFG" value="Enabled" locked="false"/>
+                  <setting id="OCCS_OSCTL2_MON_ENABLE_CFG" value="Enabled" locked="false"/>
+                  <setting id="OCCS_OSCTL2_ROPD200K_CFG" value="Enabled" locked="false"/>
+               </clock_settings>
+               <called_from_default_init>true</called_from_default_init>
+            </clock_configuration>
+            <clock_configuration name="BOARD_BootClockLPRUN" id_prefix="" prefix_user_defined="false">
+               <description></description>
+               <options/>
+               <dependencies>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.extal" description="&apos;EXTAL&apos; (Pins tool id: OCCS.extal, Clocks tool id: OCCS.EXTAL) needs to be routed" problem_level="1" source="Clocks:BOARD_BootClockLPRUN">
+                     <feature name="routed" evaluation="">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.extal" description="&apos;EXTAL&apos; (Pins tool id: OCCS.extal, Clocks tool id: OCCS.EXTAL) needs to have &apos;INPUT&apos; direction" problem_level="1" source="Clocks:BOARD_BootClockLPRUN">
+                     <feature name="direction" evaluation="">
+                        <data>INPUT</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.xtal" description="&apos;XTAL&apos; (Pins tool id: OCCS.xtal, Clocks tool id: OCCS.XTAL) needs to be routed" problem_level="1" source="Clocks:BOARD_BootClockLPRUN">
+                     <feature name="routed" evaluation="">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="PeripheralUnifiedSignal" resourceId="OCCS.xtal" description="&apos;XTAL&apos; (Pins tool id: OCCS.xtal, Clocks tool id: OCCS.XTAL) needs to have &apos;OUTPUT&apos; direction" problem_level="1" source="Clocks:BOARD_BootClockLPRUN">
+                     <feature name="direction" evaluation="">
+                        <data>OUTPUT</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Clocks initialization requires the COMMON Driver in the project." problem_level="2" source="Clocks:BOARD_BootClockLPRUN">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <clock_sources>
+                  <clock_source id="OCCS.OSC.outFreq" value="8 MHz" locked="false" enabled="true"/>
+                  <clock_source id="OCCS.ROSC200kHz.outFreq" value="200 kHz" locked="false" enabled="false"/>
+               </clock_sources>
+               <clock_outputs>
+                  <clock_output id="BUS_2X_CLK.outFreq" value="4 MHz" locked="false" accuracy=""/>
+                  <clock_output id="BUS_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="CPU_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="EXT_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="IIC0_FLT_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="IIC1_FLT_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="MSTR_OSC.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC200kHz_CLK.outFreq" value="200 kHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC48MHz_CLK.outFreq" value="48 MHz" locked="false" accuracy=""/>
+                  <clock_output id="ROSC8MHz_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI0_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI1_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SCI2_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_2X_CLK.outFreq" value="4 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_CLK.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_FTFE.outFreq" value="500 kHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_IPBB.outFreq" value="2 MHz" locked="false" accuracy=""/>
+                  <clock_output id="XOSC_CLK.outFreq" value="8 MHz" locked="false" accuracy=""/>
+               </clock_outputs>
+               <clock_settings>
+                  <setting id="powerMode" value="LPRUN" locked="false"/>
+                  <setting id="OCCS.COD.scale" value="2" locked="true"/>
+                  <setting id="OCCS.EXT_SEL.sel" value="OCCS.OSC" locked="false"/>
+                  <setting id="OCCS.PRECS.sel" value="OCCS.EXT_SEL" locked="false"/>
+                  <setting id="OCCS_OSCTL2_COPD_CFG" value="Enabled" locked="false"/>
+                  <setting id="OCCS_OSCTL2_MON_ENABLE_CFG" value="Enabled" locked="false"/>
+                  <setting id="OCCS_OSCTL2_ROPD200K_CFG" value="Enabled" locked="false"/>
+               </clock_settings>
+               <called_from_default_init>false</called_from_default_init>
+            </clock_configuration>
+         </clock_configurations>
+      </clocks>
+      <dcdx name="DCDx" version="3.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
+         <dcdx_profile>
+            <processor_version>0.0.0</processor_version>
+         </dcdx_profile>
+         <dcdx_configurations/>
+      </dcdx>
+      <periphs name="Peripherals" version="11.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/peripherals.c" update_enabled="true"/>
+            <file path="board/peripherals.h" update_enabled="true"/>
+            <file path="startup/Flash_config.h" update_enabled="true"/>
+         </generated_project_files>
+         <peripherals_profile>
+            <processor_version>11.0.1</processor_version>
+         </peripherals_profile>
+         <functional_groups>
+            <functional_group name="BOARD_InitPeripherals" uuid="460e81ed-af63-4663-9fb9-7c6ffb1c54a3" called_from_default_init="true" id_prefix="" core="core0">
+               <description></description>
+               <options/>
+               <dependencies/>
+               <instances>
+                  <instance name="INTC" uuid="27dfc489-2594-4d89-93d5-9488810f2744" type="intc_reg" type_id="intc_reg_5d361a53fef6bec91d1f7c2aeedd895b" mode="general" peripheral="INTC" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="intc">
+                        <setting name="dsc_core_int_level" value="all_levels"/>
+                        <array name="interrupt_table"/>
+                        <array name="interrupts"/>
+                     </config_set>
+                  </instance>
+                  <instance name="Flash_configuration" uuid="eeac5639-707a-4026-a354-bd8a81f89eaf" type="dsc_flash_config" type_id="dsc_flash_config_87b8cda2db02ccd1732cf954ffb02af3" mode="general" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="fcf_config" quick_selection="default">
+                        <struct name="bcaConfig">
+                           <struct name="crcCheck">
+                              <setting name="crcStartAddress" value="0xFFFFFFFF"/>
+                              <setting name="crcByteCount" value="0xFFFFFFFF"/>
+                              <setting name="crcExpectedValue" value="0xFFFFFFFF"/>
+                           </struct>
+                           <set name="enabledPeripherals">
+                              <selected>
+                                 <id>uart</id>
+                                 <id>i2c</id>
+                                 <id>spi</id>
+                                 <id>can</id>
+                              </selected>
+                           </set>
+                           <setting name="i2cSlaveAddress" value="0xFF"/>
+                           <setting name="peripheralDetectionTimeout" value="6000"/>
+                           <setting name="directBootFlag" value="false"/>
+                           <struct name="canConfig">
+                              <setting name="baudRateConfig" value="auto"/>
+                              <setting name="canTxId" value="0xFFFF"/>
+                              <setting name="canRxId" value="0xFFFF"/>
+                           </struct>
+                        </struct>
+                        <struct name="flashConfig">
+                           <array name="keyBytes">
+                              <struct name="0">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="1">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="2">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="3">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="4">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="5">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="6">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="7">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                           </array>
+                           <array name="protBytes">
+                              <struct name="0">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="1">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="2">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                              <struct name="3">
+                                 <setting name="byteValue" value="0xFF"/>
+                              </struct>
+                           </array>
+                           <struct name="FSEC">
+                              <setting name="SEC" value="unsecure"/>
+                              <setting name="FSLACC" value="granted"/>
+                              <setting name="KEYEN" value="false"/>
+                              <setting name="MEEN" value="true"/>
+                           </struct>
+                           <setting name="bootOption" value="3"/>
+                           <setting name="pwrMode" value="1"/>
+                        </struct>
+                        <struct name="fcf_codegenerator"/>
+                     </config_set>
+                  </instance>
+               </instances>
+            </functional_group>
+         </functional_groups>
+         <components>
+            <component name="system" uuid="393d84aa-7d47-4dc4-9712-6c4c3e274bcc" type_id="system_54b53072540eeeb8f8e9343e71f28176">
+               <config_set_global name="global_system_definitions">
+                  <setting name="user_definitions" value=""/>
+                  <setting name="user_includes" value=""/>
+                  <setting name="init_delay_enable" value="false"/>
+               </config_set_global>
+            </component>
+            <component name="msg" uuid="17e487cf-bd76-499a-a626-9c0061648457" type_id="msg_6e2baaf3b97dbeef01c0043275f9a0e7">
+               <config_set_global name="global_messages"/>
+            </component>
+            <component name="generic_uart" uuid="668cc088-7075-4636-a0c2-0a8ccb2fc491" type_id="generic_uart_8cae00565451cf2346eb1b8c624e73a6">
+               <config_set_global name="global_uart"/>
+            </component>
+            <component name="generic_can" uuid="30118ddc-99e1-4795-8561-7b93daef37e1" type_id="generic_can_1bfdd78b1af214566c1f23cf6a582d80">
+               <config_set_global name="global_can"/>
+            </component>
+            <component name="uart_cmsis_common" uuid="9a445ad9-95f0-4fea-a170-0461ed654d7e" type_id="uart_cmsis_common_9cb8e302497aa696fdbb5a4fd622c2a8">
+               <config_set_global name="global_USART_CMSIS_common" quick_selection="default"/>
+            </component>
+            <component name="gpio_adapter_common" uuid="e249d965-55f1-4b46-8bf0-22ed749db8c3" type_id="gpio_adapter_common_57579b9ac814fe26bf95df0a384c36b6">
+               <config_set_global name="global_gpio_adapter_common" quick_selection="default"/>
+            </component>
+            <component name="generic_enet" uuid="6969c8c0-a1ca-42d9-9cc7-b250a931e42c" type_id="generic_enet_74db5c914f0ddbe47d86af40cb77a619">
+               <config_set_global name="global_enet"/>
+            </component>
+         </components>
+      </periphs>
+      <tee name="TEE" version="4.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
+         <tee_profile>
+            <processor_version>0.0.0</processor_version>
+         </tee_profile>
+      </tee>
+   </tools>
+</configuration>

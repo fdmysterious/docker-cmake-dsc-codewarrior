@@ -21,7 +21,11 @@ include_directories(
 
 	"${SUPPORT_MSL_COMMON_PATH}/Include"
 	"${SUPPORT_MSL_DSP_PATH}/prefix"
+	"${SUPPORT_MSL_DSP_PATH}/inc"
 	"${SUPPORT_MSL_RUNTIME_PATH}/include"
+
+	"${CPU_SDK_PATH}/utilities/debug_console_lite"
+	"${SDK_PATH}/components/uart"
 )
 
 #add_definitions(
@@ -33,12 +37,29 @@ include_directories(
 #    -DMCUXPRESSO_SDK
 #)
 
+# TODO # Find how to override Flash_Config.h from SDK
+
 set(C_SOURCES
 	${CPU_SDK_PATH}/drivers/fsl_common.c
+	${CPU_SDK_PATH}/drivers/fsl_clock.c
+	${CPU_SDK_PATH}/drivers/fsl_gpio.c
+	${CPU_SDK_PATH}/drivers/fsl_qsci.c
+	${CPU_SDK_PATH}/drivers/fsl_common_dsc.c
+
 	${CPU_SDK_PATH}/codewarrior/MC56F83789_Vectors.c
 	${CPU_SDK_PATH}/codewarrior/Flash_config.c
 
-	src/test.c
+	${SDK_PATH}/components/uart/fsl_adapter_qsci.c
+
+	${CPU_SDK_PATH}/utilities/debug_console_lite/fsl_assert.c
+	${CPU_SDK_PATH}/utilities/debug_console_lite/fsl_debug_console.c
+
+	board/clock_config.c
+	board/peripherals.c
+	board/pin_mux.c
+	board/board.c
+
+	src/main.c
 )
 
 set_property(SOURCE ${C_SOURCES} PROPERTY
